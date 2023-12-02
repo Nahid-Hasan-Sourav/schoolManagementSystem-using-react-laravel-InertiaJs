@@ -1,6 +1,8 @@
+import { Link, usePage } from '@inertiajs/react';
 import React from 'react';
 
 const LeftSideBar = () => {
+    const {route}=usePage()
     return (
         <>
             <div className="sl-sideleft">
@@ -26,14 +28,14 @@ const LeftSideBar = () => {
                             <span className="menu-item-label">Dashboard</span>
                         </div>
                     </a>
-                    <a href="widgets.html" className="sl-menu-link">
+                    <Link href="/add-class" className="sl-menu-link">
                         <div className="sl-menu-item">
                             <i className="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
                             <span className="menu-item-label">
-                                Cards &amp; Widgets
+                               Add Class
                             </span>
                         </div>
-                    </a>
+                    </Link>
                     <a href="#" className="sl-menu-link">
                         <div className="sl-menu-item">
                             <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>

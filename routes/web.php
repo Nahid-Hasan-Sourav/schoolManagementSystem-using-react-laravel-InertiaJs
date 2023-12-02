@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Setup\StudentClassController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,3 +20,5 @@ Route::get('/', function () {
         'users' => "hghas ghasg"
     ]);
 });
+
+Route::get('/add-class',[StudentClassController::class,'index'])->name('add.student.class');
