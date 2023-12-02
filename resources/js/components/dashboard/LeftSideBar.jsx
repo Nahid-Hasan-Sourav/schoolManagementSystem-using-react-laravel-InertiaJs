@@ -28,7 +28,7 @@ const LeftSideBar = () => {
                             <span className="menu-item-label">Dashboard</span>
                         </div>
                     </a>
-                    <Link href="/add-class" className="sl-menu-link">
+                    <Link href="/add-class-view" className="sl-menu-link">
                         <div className="sl-menu-item">
                             <i className="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
                             <span className="menu-item-label">

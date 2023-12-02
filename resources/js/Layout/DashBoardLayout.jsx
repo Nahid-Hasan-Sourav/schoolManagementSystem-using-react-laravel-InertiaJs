@@ -24,7 +24,7 @@ const DashBoardLayout = ({children}) => {
                 </a>
                 <span className="breadcrumb-item active">Dashboard</span>
             </nav>
-            <div class="sl-pagebody">
+            <div className="sl-pagebody">
                 {children}
             </div>
 

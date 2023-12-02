@@ -17,8 +17,10 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('dashboard/AdminDashboard', [
-        'users' => "hghas ghasg"
+        // 'users' => "hghas ghasg"
     ]);
 });
 
-Route::get('/add-class',[StudentClassController::class,'index'])->name('add.student.class');
+Route::get('/add-class-view',[StudentClassController::class,'index'])->name('view.student.class');
+Route::post('/add-class',[StudentClassController::class,'store'])->name('add.student.class');
+
