@@ -12,10 +12,6 @@ const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayed,setIsDisplaye
         <>
             <form onSubmit={(e) => studentClassSubmit(e)}>
                 <div
-                    // className={`modal fade ${additionalClass}`}
-                    // id="exampleModal"
-                    // aria-labelledby="exampleModalLabel"
-                    // aria-hidden="true"
                     className={`modal fade  ${isDisplayed ? 'show' : ''}`}
                     style={{ display: isDisplayed ? 'block' : 'none' }}
 
