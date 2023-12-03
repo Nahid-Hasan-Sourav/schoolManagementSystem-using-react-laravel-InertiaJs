@@ -4,29 +4,31 @@ import DashBoardLayout from "../../../Layout/DashBoardLayout";
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import AddStudentClassModal from "../../../components/modal/AddStudentClass/AddStudentClassModal";
+import toast from "react-hot-toast";
 
 const StudentclassName = () => {
-    const { success } = usePage().props.flash;  
+    const { success } = usePage().props.flash;
      console.log('Message:', success);
 
-   
+     const [additionalClass, setAdditionalClass] = useState("");
 
     const studentClassSubmit = (e,closeModal) => {
         e.preventDefault();
         const form = e.target;
         const className = form.className.value;
-        
+
         const classNameData ={
             className
         }
-     
-       
+
+
         router.post('/add-class', classNameData, {
             onSuccess: (props) => {
                 console.log("object,",props?.props?.flash?.success);
                 if (props?.props?.flash?.success) {
-                    console.log("Closing modal...");
-                    closeModal();
+                    // console.log("Closing modal...");
+                    // closeModal();
+
                 }
 
             },
@@ -37,18 +39,23 @@ const StudentclassName = () => {
                 //     modal.hide();
                 // }
                 // }
-                closeModal()
+                // closeModal()
+                // const newAdditionalClass = "hide";
+                // setAdditionalClass(newAdditionalClass)
+                const newAdditionalClass = "hide";
+                setAdditionalClass(newAdditionalClass)
+                // toast.success("CONGRATULATION !! THE ITEM IS BOOKED");
             },
         });
 
-      
-    
 
-       
+
+
+
 
     };
-    
-  
+
+
     return (
         <>
             <DashBoardLayout>
@@ -91,7 +98,10 @@ const StudentclassName = () => {
                     </div>
                     <AddStudentClassModal
                     studentClassSubmit={studentClassSubmit}
-                   
+                    additionalClass={additionalClass}
+                    setAdditionalClass={setAdditionalClass}
+
+
                     />
                 </div>
 

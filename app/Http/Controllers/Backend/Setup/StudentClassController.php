@@ -17,11 +17,12 @@ class StudentClassController extends Controller
     }
 
     public function store(Request $request){
-        $data = $request->all();
+        // $data = $request->all();
+        // dd($request->all());
 
-        // $className = new StudentClass();
-        // $className->name = $request->className;
-        // $className->save();
+        $className = new StudentClass();
+        $className->name = $request->className;
+        $className->save();
 
         return redirect()->route('view.student.class')
         ->with('success', 'Request has been send successfully!!!');
@@ -31,6 +32,6 @@ class StudentClassController extends Controller
         // return Inertia::render('dashboard/StudentClass/StudentClass', [
         //     'data' => $data,
         // ]);
-        
+
     }
 }

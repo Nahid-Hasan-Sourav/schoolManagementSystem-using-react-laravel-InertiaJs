@@ -1,15 +1,16 @@
 
 import React, { useRef } from "react";
 
-const AddStudentclassNameModal = ({ studentClassSubmit  }) => {
-    const modalRef = useRef();
+const AddStudentclassNameModal = ({ studentClassSubmit,additionalClass }) => {
 
-    const closeModal = () => {
-      if (modalRef.current) {
-        const modal = new bootstrap.Modal(modalRef.current);
-        modal.hide();
-      }
-    };
+    // const modalRef = useRef();
+
+    // const closeModal = () => {
+    //   if (modalRef.current) {
+    //     const modal = new bootstrap.Modal(modalRef.current);
+    //     modal.hide();
+    //   }
+    // };
     // const closeModal = () => {
     //     const modal = new bootstrap.Modal(document.getElementById("exampleModal"));
     //     // console.log("MODAL ",modal);
@@ -17,14 +18,13 @@ const AddStudentclassNameModal = ({ studentClassSubmit  }) => {
     //   };
     return (
         <>
-            <form onSubmit={(e) => studentClassSubmit(e,closeModal)}>
+            <form onSubmit={(e) => studentClassSubmit(e)}>
                 <div
-                    className="modal fade"
-                    ref={modalRef}
+                    className={`modal fade ${additionalClass}`}
                     id="exampleModal"
                     aria-labelledby="exampleModalLabel"
                     aria-hidden="true"
-                    
+
                 >
                     <div className="modal-dialog w-100">
                         <div className="modal-content">
