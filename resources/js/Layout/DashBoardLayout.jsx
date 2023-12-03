@@ -7,7 +7,8 @@ const DashBoardLayout = ({children}) => {
         <div>
         <div className="sl-logo">
             <a href="">
-                <i className="icon ion-android-star-outline"></i> starlight
+                {/* <i className="icon ion-android-star-outline"></i> starlight */}
+                My School
             </a>
         </div>
 

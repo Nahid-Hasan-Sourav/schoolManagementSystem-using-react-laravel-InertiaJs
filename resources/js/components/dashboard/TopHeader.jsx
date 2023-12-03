@@ -10,11 +10,11 @@ const TopHeader = () => {
                             <i className="icon ion-navicon-round"></i>
                         </a>
                     </div>
-                    <div className="navicon-left hidden-lg-up">
+                    {/* <div className="navicon-left hidden-lg-up">
                         <a id="btnLeftMenuMobile" href="">
                             <i className="icon ion-navicon-round"></i>
                         </a>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="sl-header-right">
                     <nav className="nav">

@@ -36,7 +36,7 @@ const LeftSideBar = () => {
                             </span>
                         </div>
                     </Link>
-                    <a href="#" className="sl-menu-link">
+                    {/* <a href="#" className="sl-menu-link">
                         <div className="sl-menu-item">
                             <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
                             <span className="menu-item-label">Charts</span>
@@ -248,7 +248,7 @@ const LeftSideBar = () => {
                                 404 Page Not Found
                             </a>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
 
                 <br/>

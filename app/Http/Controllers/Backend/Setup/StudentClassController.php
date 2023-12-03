@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Setup;
 
 use App\Http\Controllers\Controller;
+use App\Models\StudentClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -18,30 +19,18 @@ class StudentClassController extends Controller
     public function store(Request $request){
         $data = $request->all();
 
-        // return inertia()->render('dashboard/StudentClass/StudentClass', [
-        //     'message' => 'Class added successfully',
-        //     'data' => [
-        //         'className' =>  $data,
-        //     ],
+        // $className = new StudentClass();
+        // $className->name = $request->className;
+        // $className->save();
+
+        return redirect()->route('view.student.class')
+        ->with('success', 'Request has been send successfully!!!');
+
+        // return view('',compact('data'));
+
+        // return Inertia::render('dashboard/StudentClass/StudentClass', [
+        //     'data' => $data,
         // ]);
-        // return Inertia()->visit('dashboard/StudentClass/StudentClass', [
-        //     'message' => 'Class added successfully',
-        //     'data' => [
-        //         'className' =>  $data,
-        //     ],
-        // ]);
-        // return Redirect::back()->with('success', 'Contact updated.');
-        // return inertia()->visit('dashboard/StudentClass/StudentClass', [
-        //     'message' => 'Class added successfully',
-        //     'data' => [
-        //         'className' => $data,
-        //         'status' => 'success', // include your custom data here
-        //     ],
-        // ]);
-        return back()->with([
-            'data' => $data,
-            'status' => 'success',
-        ]);
         
     }
 }

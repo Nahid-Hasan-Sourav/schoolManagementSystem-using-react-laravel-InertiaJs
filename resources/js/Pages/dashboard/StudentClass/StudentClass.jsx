@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { router } from '@inertiajs/react'
-// import { Inertia } from "@inertiajs/inertia-react";
+import React, { useEffect, useRef, useState } from "react";
+import { router, usePage } from '@inertiajs/react'
 import DashBoardLayout from "../../../Layout/DashBoardLayout";
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import AddStudentClassModal from "../../../components/modal/AddStudentClass/AddStudentClassModal";
-const StudentclassName = () => {
-    const[openModal,setOpenModal]=useState(true);
 
-    // const addStudentClassModalOpen=(e)=>{
-    //     setOpenModal(!openModal);console.log("Class Name Form",e);
-    // }
+const StudentclassName = () => {
+    const { success } = usePage().props.flash;  
+     console.log('Message:', success);
+
+   
+
     const studentClassSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -19,43 +19,33 @@ const StudentclassName = () => {
         const classNameData ={
             className
         }
-        // console.log("This is form data",classNameData )
-        // router.visit('/add-class', {
-        //     method: 'post',
-        //     data: {classNameData},
-        //     replace: false,
-        //     preserveState: false,
-        //     preserveScroll: false,
-        //     only: [],
-        //     headers: {},
-        //     errorBag: null,
-        //     forceFormData: false,
-        //     onCancelToken: cancelToken => {},
-        //     onCancel: () => {},
-        //     onBefore: visit => {},
-        //     onStart: visit => {},
-        //     onProgress: progress => {},
-        //     onSuccess: page => {console.log("Success",page)},
-        //     onError: errors => {console.log("Errors",errors)},
-        //     onFinish: visit => {console.log("Errors",visit)},
-        //   })
-        router.visit("/add-class", {
-            method: 'post',
-            data: {classNameData},
-            onSuccess: (resp) => {
-                console.log(resp);
-            }
+     
+       
+        router.post('/add-class', classNameData, {
+            onSuccess: (props) => {
+                console.log("object,",props?.props?.flash?.success);
+                
+
+            },
+            onFinish: visit => {
+                // if(success){
+                //     if (modalRef.current) {
+                //     const modal = new bootstrap.Modal(modalRef.current);
+                //     modal.hide();
+                // }
+                // }
+                
+            },
         });
-        // Inertia.post('/add-class', { classNameData }, {
-        //     onSuccess: (data) => {
-        //         console.log("Form submitted successfully:", data);
-        //     },
-        //     onError: (errors) => {
-        //         console.log("Form submission failed with errors:", errors);
-        //     },
-        // });
+
+      
+    
+
+       
 
     };
+    
+  
     return (
         <>
             <DashBoardLayout>
@@ -98,6 +88,7 @@ const StudentclassName = () => {
                     </div>
                     <AddStudentClassModal
                     studentClassSubmit={studentClassSubmit}
+                   
                     />
                 </div>
 
