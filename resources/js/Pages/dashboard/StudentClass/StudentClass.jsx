@@ -11,11 +11,11 @@ const StudentclassName = () => {
 
    
 
-    const studentClassSubmit = (e) => {
+    const studentClassSubmit = (e,closeModal) => {
         e.preventDefault();
         const form = e.target;
         const className = form.className.value;
-
+        
         const classNameData ={
             className
         }
@@ -24,7 +24,10 @@ const StudentclassName = () => {
         router.post('/add-class', classNameData, {
             onSuccess: (props) => {
                 console.log("object,",props?.props?.flash?.success);
-                
+                if (props?.props?.flash?.success) {
+                    console.log("Closing modal...");
+                    closeModal();
+                }
 
             },
             onFinish: visit => {
@@ -34,7 +37,7 @@ const StudentclassName = () => {
                 //     modal.hide();
                 // }
                 // }
-                
+                closeModal()
             },
         });
 

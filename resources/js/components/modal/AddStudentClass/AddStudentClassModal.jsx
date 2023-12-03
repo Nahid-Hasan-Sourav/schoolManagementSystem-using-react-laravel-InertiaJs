@@ -1,12 +1,26 @@
 
 import React, { useRef } from "react";
 
-const AddStudentclassNameModal = ({ studentClassSubmit,modalRef  }) => {
+const AddStudentclassNameModal = ({ studentClassSubmit  }) => {
+    const modalRef = useRef();
+
+    const closeModal = () => {
+      if (modalRef.current) {
+        const modal = new bootstrap.Modal(modalRef.current);
+        modal.hide();
+      }
+    };
+    // const closeModal = () => {
+    //     const modal = new bootstrap.Modal(document.getElementById("exampleModal"));
+    //     // console.log("MODAL ",modal);
+    //     modal.hide();
+    //   };
     return (
         <>
-            <form onSubmit={(e) => studentClassSubmit(e)}>
+            <form onSubmit={(e) => studentClassSubmit(e,closeModal)}>
                 <div
                     className="modal fade"
+                    ref={modalRef}
                     id="exampleModal"
                     aria-labelledby="exampleModalLabel"
                     aria-hidden="true"
