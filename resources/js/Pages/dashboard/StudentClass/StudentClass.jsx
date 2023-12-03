@@ -9,9 +9,12 @@ import toast from "react-hot-toast";
 const StudentclassName = () => {
     const { success } = usePage().props.flash;
      console.log('Message:', success);
+     const [isDisplayed, setIsDisplayed] = useState(false);
 
-     const [additionalClass, setAdditionalClass] = useState("");
 
+    const addStudentClassModalOpen =()=>{
+        setIsDisplayed((prev) => !prev);
+    }
     const studentClassSubmit = (e,closeModal) => {
         e.preventDefault();
         const form = e.target;
@@ -33,18 +36,8 @@ const StudentclassName = () => {
 
             },
             onFinish: visit => {
-                // if(success){
-                //     if (modalRef.current) {
-                //     const modal = new bootstrap.Modal(modalRef.current);
-                //     modal.hide();
-                // }
-                // }
-                // closeModal()
-                // const newAdditionalClass = "hide";
-                // setAdditionalClass(newAdditionalClass)
-                const newAdditionalClass = "hide";
-                setAdditionalClass(newAdditionalClass)
-                // toast.success("CONGRATULATION !! THE ITEM IS BOOKED");
+                setIsDisplayed((prev) => !prev);
+                toast.success("CONGRATULATION !! THE ITEM IS BOOKED");
             },
         });
 
@@ -64,9 +57,9 @@ const StudentclassName = () => {
                         <h1>Student Class List</h1>
                         <button type="button"
                         className="btn btn-success"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                        // onClick={(e)=>addStudentClassModalOpen(e)}
+                        // data-bs-toggle="modal"
+                        // data-bs-target="#exampleModal"
+                        onClick={addStudentClassModalOpen}
                         >
                             Add Student Class
                         </button>
@@ -98,8 +91,8 @@ const StudentclassName = () => {
                     </div>
                     <AddStudentClassModal
                     studentClassSubmit={studentClassSubmit}
-                    additionalClass={additionalClass}
-                    setAdditionalClass={setAdditionalClass}
+                    setIsDisplayed={setIsDisplayed}
+                    isDisplayed={isDisplayed}
 
 
                     />

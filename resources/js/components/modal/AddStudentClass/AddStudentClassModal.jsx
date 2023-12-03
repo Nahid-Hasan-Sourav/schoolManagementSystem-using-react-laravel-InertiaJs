@@ -1,29 +1,23 @@
 
 import React, { useRef } from "react";
 
-const AddStudentclassNameModal = ({ studentClassSubmit,additionalClass }) => {
+const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayed,setIsDisplayed}) => {
 
-    // const modalRef = useRef();
 
-    // const closeModal = () => {
-    //   if (modalRef.current) {
-    //     const modal = new bootstrap.Modal(modalRef.current);
-    //     modal.hide();
-    //   }
-    // };
-    // const closeModal = () => {
-    //     const modal = new bootstrap.Modal(document.getElementById("exampleModal"));
-    //     // console.log("MODAL ",modal);
-    //     modal.hide();
-    //   };
+    const closeModal = () => {
+        setIsDisplayed((prev) => !prev);
+
+    };
     return (
         <>
             <form onSubmit={(e) => studentClassSubmit(e)}>
                 <div
-                    className={`modal fade ${additionalClass}`}
-                    id="exampleModal"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
+                    // className={`modal fade ${additionalClass}`}
+                    // id="exampleModal"
+                    // aria-labelledby="exampleModalLabel"
+                    // aria-hidden="true"
+                    className={`modal fade  ${isDisplayed ? 'show' : ''}`}
+                    style={{ display: isDisplayed ? 'block' : 'none' }}
 
                 >
                     <div className="modal-dialog w-100">
@@ -38,8 +32,7 @@ const AddStudentclassNameModal = ({ studentClassSubmit,additionalClass }) => {
                                 <button
                                     type="button"
                                     className="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
+                                    onClick={closeModal}
                                 ></button>
                             </div>
 
@@ -62,7 +55,7 @@ const AddStudentclassNameModal = ({ studentClassSubmit,additionalClass }) => {
                                 <button
                                     type="button"
                                     className="btn btn-secondary"
-                                    data-bs-dismiss="modal"
+                                    onClick={closeModal}
                                 >
                                     Close
                                 </button>
