@@ -1,12 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { router, usePage } from "@inertiajs/react";
 import DashBoardLayout from "../../../Layout/DashBoardLayout";
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import AddStudentClassModal from "../../../components/modal/AddStudentClass/AddStudentClassModal";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../context/AppProvider";
 
 const StudentclassName = () => {
+    const {name} = useContext(AuthContext)
+    // console.log("Context value test--- : ",name);
     const { flash, allClassName } = usePage().props;
   //set state open modal start here
     const [isDisplayed, setIsDisplayed]    = useState(false);

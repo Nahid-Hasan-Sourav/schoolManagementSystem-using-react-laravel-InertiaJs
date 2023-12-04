@@ -2,6 +2,7 @@ import React from "react";
 import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
 import { Toaster } from "react-hot-toast";
+import AppProvider from "./context/AppProvider";
 
 createInertiaApp({
     resolve: (name) => {
@@ -10,10 +11,12 @@ createInertiaApp({
     },
     setup: ({ el, App, props }) => {
         createRoot(el).render(
-            <>
-                <Toaster/>
-                <App {...props} />
-            </>
+            <AppProvider>
+                <>
+                    <Toaster />
+                    <App {...props} />
+                </>
+            </AppProvider>
         );
     },
 });
