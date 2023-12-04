@@ -6,6 +6,8 @@ import { MdDelete } from "react-icons/md";
 import AddStudentClassModal from "../../../components/modal/AddStudentClass/AddStudentClassModal";
 import toast from "react-hot-toast";
 import { AppContext } from "../../../context/AppProvider";
+import swal from 'sweetalert';
+
 
 const StudentclassName = () => {
     const {name} = useContext(AppContext)
@@ -61,9 +63,9 @@ const StudentclassName = () => {
             // console.log("Class Name Datas for update -- : ",classNameDatas)
             router.put(`/update-class/${id}`, classNameDatas, {
             onSuccess: (props) => {
-               
+
                 if (props?.props?.flash?.success) {
-                  
+
                 }
             },
             onFinish: (visit) => {
@@ -76,10 +78,10 @@ const StudentclassName = () => {
             },
         });
         }
-      
+
     };
 
-    //click the edit icon and showing the edit modal start here 
+    //click the edit icon and showing the edit modal start here
     const editClassName =(e,data)=>{
 
         setIsDisplayedModal((prev) => !prev);
@@ -90,13 +92,44 @@ const StudentclassName = () => {
         //set the data for showing on modal end here
 
         //set the data for passed data in classNameDatas object start here
-        setInputClassName(data.name)    
+        setInputClassName(data.name)
         //set the data for passed data in classNameDatas object end here
 
-    } 
-    //click the edit icon and showing the edit modal end here 
+    }
+    //click the edit icon and showing the edit modal end here
 
-       
+    const deleteClassName = (e,id) =>{
+        swal({
+            title: "Are you sure?",
+            text: "You Want Top Delete The Class Name ?? ",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                // console.log(willDelete)
+
+                router.delete(`/delete-class/${id}`,{
+                    onSuccess: (props) => {
+
+                        if (props?.props?.flash?.success) {
+
+                        }
+                    },
+                    onFinish: (visit) => {
+
+                        swal("Class Name has been deleted!", {
+                            icon: "success",
+                          });
+                    },
+                });
+            } else {
+              swal("You Don't Want to delete it.");
+            }
+          });
+    }
+
 
     return (
         <>
@@ -134,7 +167,7 @@ const StudentclassName = () => {
                                             <button className="btn btn-primary m-2" onClick={(e)=>editClassName(e,data)}>
                                                 <FiEdit />
                                             </button>
-                                            <button className="btn btn-danger">
+                                            <button className="btn btn-danger" onClick={(e)=>deleteClassName(e,data.id)}>
                                                 <MdDelete />
                                             </button>
                                         </td>

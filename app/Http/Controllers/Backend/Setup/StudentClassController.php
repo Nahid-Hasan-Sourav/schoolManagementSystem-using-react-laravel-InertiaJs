@@ -12,7 +12,7 @@ class StudentClassController extends Controller
 {
     public function index(){
         $allClassName =StudentClass::all();
-        
+
         return Inertia::render('dashboard/StudentClass/StudentClass', [
             'allClassName' => $allClassName
         ]);
@@ -42,13 +42,24 @@ class StudentClassController extends Controller
         // dd($data['className']);
         $exitData = StudentClass::find($id);
 
-        
+
 
         $exitData->name = $data['className'];
         $exitData->save();
 
         return redirect()->route('view.student.class')
         ->with('success', 'Data Update Successfully !!!');
+
+    }
+
+
+    public function delete($id){
+        $deleteData = StudentClass::find($id);
+
+        $deleteData->delete();
+        return redirect()->route('view.student.class')
+        ->with('success', 'Data delete Successfully !!!');
+
 
     }
 
