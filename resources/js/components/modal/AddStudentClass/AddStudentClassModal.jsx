@@ -1,11 +1,11 @@
 
 import React, { useRef } from "react";
 
-const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayed,setIsDisplayed,editModalOpen,classNameData,setClassNameData,setInputClassName,inputClassName}) => {
+const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayedModal,setIsDisplayedModal,editModalOpen,classNameData,setClassNameData,setInputClassName,inputClassName}) => {
 
 //    console.log("Edit modal data ----- : ",classNameData);
     const closeModal = () => {
-        setIsDisplayed((prev) => !prev);
+        setIsDisplayedModal((prev) => !prev);
 
     };
     return (
@@ -13,8 +13,8 @@ const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayed,setIsDisplaye
             <form onSubmit={(e) => studentClassSubmit(e)}>
                 <div
                
-                    className={`modal fade  ${isDisplayed ? 'show' : ''}`}
-                    style={{ display: isDisplayed ? 'block' : 'none', top:-300 }}
+                    className={`modal fade  ${isDisplayedModal ? 'show' : ''}`}
+                    style={{ display: isDisplayedModal ? 'block' : 'none', top:-300 }}
 
                 >
                     <div className="modal-dialog w-100">

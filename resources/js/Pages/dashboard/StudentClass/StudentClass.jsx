@@ -5,14 +5,14 @@ import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import AddStudentClassModal from "../../../components/modal/AddStudentClass/AddStudentClassModal";
 import toast from "react-hot-toast";
-import { AuthContext } from "../../../context/AppProvider";
+import { AppContext } from "../../../context/AppProvider";
 
 const StudentclassName = () => {
-    const {name} = useContext(AuthContext)
+    const {name} = useContext(AppContext)
     // console.log("Context value test--- : ",name);
     const { flash, allClassName } = usePage().props;
   //set state open modal start here
-    const [isDisplayed, setIsDisplayed]    = useState(false);
+    const [isDisplayedModal, setIsDisplayedModal]    = useState(false);
    //set state open modal end here
 
     const [editModalOpen,seteditModalOpen] = useState(true);
@@ -22,7 +22,7 @@ const StudentclassName = () => {
     //open student add class name modal
     const addStudentClassModalOpen = () => {
         setInputClassName("")
-        setIsDisplayed((prev) => !prev);
+        setIsDisplayedModal((prev) => !prev);
         seteditModalOpen(false)
     };
 
@@ -50,7 +50,7 @@ const StudentclassName = () => {
                 }
             },
             onFinish: (visit) => {
-                setIsDisplayed((prev) => !prev);
+                setIsDisplayedModal((prev) => !prev);
                 form.reset();
                 toast.success("CLASS ADDED SUCCESSFULLY !!");
             },
@@ -69,7 +69,7 @@ const StudentclassName = () => {
             onFinish: (visit) => {
 
                 //close the modal and change the state start here
-                setIsDisplayed((prev) => !prev);
+                setIsDisplayedModal((prev) => !prev);
                 //close the modal and change the state end here
                 form.reset();
                 toast.success("CLASS NAME UPDATED SUCCESSFULLY !!");
@@ -82,7 +82,7 @@ const StudentclassName = () => {
     //click the edit icon and showing the edit modal start here 
     const editClassName =(e,data)=>{
 
-        setIsDisplayed((prev) => !prev);
+        setIsDisplayedModal((prev) => !prev);
 
         seteditModalOpen(true);
         //set the data for showing on modal start here
@@ -146,8 +146,8 @@ const StudentclassName = () => {
                     </div>
                     <AddStudentClassModal
                         studentClassSubmit={studentClassSubmit}
-                        setIsDisplayed={setIsDisplayed}
-                        isDisplayed={isDisplayed}
+                        setIsDisplayedModal={setIsDisplayedModal}
+                        isDisplayedModal={isDisplayedModal}
                         editModalOpen={editModalOpen}
                         classNameData={classNameData}
                         setClassNameData={setClassNameData}

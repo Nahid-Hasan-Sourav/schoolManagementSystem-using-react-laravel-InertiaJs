@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 
-export const AuthContext=createContext()
+export const AppContext=createContext()
 
 const AppProvider = ({children}) => {
 
@@ -9,9 +9,9 @@ const AppProvider = ({children}) => {
        name:"hhjh"
       };
     return (
-        <AuthContext.Provider value={contextValue}>
+        <AppContext.Provider value={contextValue}>
             {children}
-        </AuthContext.Provider>
+        </AppContext.Provider>
     );
 };
 
