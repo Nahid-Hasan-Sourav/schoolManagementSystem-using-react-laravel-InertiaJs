@@ -10,14 +10,12 @@ import swal from 'sweetalert';
 
 
 const StudentclassName = () => {
-    const {name} = useContext(AppContext)
-    // console.log("Context value test--- : ",name);
+    const {setIsDisplayedModal,editModalOpen,seteditModalOpen} = useContext(AppContext)
+    // console.log("Context value test--- : ",isDisplayedModal);
     const { flash, allClassName } = usePage().props;
-  //set state open modal start here
-    const [isDisplayedModal, setIsDisplayedModal]    = useState(false);
-   //set state open modal end here
 
-    const [editModalOpen,seteditModalOpen] = useState(true);
+
+    
     const [classNameData,setClassNameData] = useState({})
     const [inputClassName,setInputClassName]=useState();
 
@@ -179,8 +177,6 @@ const StudentclassName = () => {
                     </div>
                     <AddStudentClassModal
                         studentClassSubmit={studentClassSubmit}
-                        setIsDisplayedModal={setIsDisplayedModal}
-                        isDisplayedModal={isDisplayedModal}
                         editModalOpen={editModalOpen}
                         classNameData={classNameData}
                         setClassNameData={setClassNameData}

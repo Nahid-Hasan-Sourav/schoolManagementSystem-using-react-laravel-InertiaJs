@@ -36,13 +36,14 @@ const LeftSideBar = () => {
                             </span>
                         </div>
                     </Link>
-                    {/* <a href="#" className="sl-menu-link">
+                     <a href="#" className="sl-menu-link">
                         <div className="sl-menu-item">
                             <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
-                            <span className="menu-item-label">Charts</span>
+                            <span className="menu-item-label">Add Year</span>
                             <i className="menu-item-arrow fa fa-angle-down"></i>
                         </div>
                     </a>
+                    {/*
                     <ul className="sl-menu-sub nav flex-column">
                         <li className="nav-item">
                             <a href="chart-morris.html" className="nav-link">

@@ -1,20 +1,19 @@
 
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
+import { AppContext } from "../../../context/AppProvider";
 
-const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayedModal,setIsDisplayedModal,editModalOpen,classNameData,setClassNameData,setInputClassName,inputClassName}) => {
+const AddStudentclassNameModal = ({ studentClassSubmit,classNameData,setClassNameData,setInputClassName,inputClassName}) => {
+    const {isDisplayedModal,setIsDisplayedModal,closeModal,editModalOpen} = useContext(AppContext)
 
-//    console.log("Edit modal data ----- : ",classNameData);
-    const closeModal = () => {
-        setIsDisplayedModal((prev) => !prev);
 
-    };
+
     return (
         <>
             <form onSubmit={(e) => studentClassSubmit(e)}>
                 <div
-               
+
                     className={`modal fade  ${isDisplayedModal ? 'show' : ''}`}
-                    style={{ display: isDisplayedModal ? 'block' : 'none', top:-300 }}
+                    style={{ display: isDisplayedModal ? 'block' : 'none', top:-250 }}
 
                 >
                     <div className="modal-dialog w-100">
@@ -25,7 +24,7 @@ const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayedModal,setIsDis
                                     id="exampleModalLabel"
                                 >
                                     {  editModalOpen? 'Update Student Class' :  'Add Student Class'
-                                       
+
                                     }
                                 </h5>
                                 <button
@@ -48,7 +47,7 @@ const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayedModal,setIsDis
                                         placeholder="class Name"
                                         value={inputClassName}
                                         onChange={(e) => setInputClassName(e.target.value)}
-                                       
+
                                     />
                                 </div>
                             </div>
@@ -67,7 +66,7 @@ const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayedModal,setIsDis
                                     value={classNameData.id}
                                 >
                                      {  editModalOpen? 'Update Class Name' :  'Add Class Name'
-                                       
+
                                     }
                                 </button>
                             </div>
