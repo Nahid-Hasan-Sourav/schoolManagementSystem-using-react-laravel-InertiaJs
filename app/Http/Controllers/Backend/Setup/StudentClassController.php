@@ -36,4 +36,20 @@ class StudentClassController extends Controller
         // ]);
 
     }
+
+    public function update(Request $request,$id){
+        $data =$request->all();
+        // dd($data['className']);
+        $exitData = StudentClass::find($id);
+
+        
+
+        $exitData->name = $data['className'];
+        $exitData->save();
+
+        return redirect()->route('view.student.class')
+        ->with('success', 'Data Update Successfully !!!');
+
+    }
+
 }

@@ -1,9 +1,9 @@
 
 import React, { useRef } from "react";
 
-const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayed,setIsDisplayed}) => {
+const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayed,setIsDisplayed,editModalOpen,classNameData,setClassNameData,setInputClassName,inputClassName}) => {
 
-
+//    console.log("Edit modal data ----- : ",classNameData);
     const closeModal = () => {
         setIsDisplayed((prev) => !prev);
 
@@ -12,8 +12,9 @@ const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayed,setIsDisplaye
         <>
             <form onSubmit={(e) => studentClassSubmit(e)}>
                 <div
+               
                     className={`modal fade  ${isDisplayed ? 'show' : ''}`}
-                    style={{ display: isDisplayed ? 'block' : 'none' }}
+                    style={{ display: isDisplayed ? 'block' : 'none', top:-300 }}
 
                 >
                     <div className="modal-dialog w-100">
@@ -23,7 +24,9 @@ const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayed,setIsDisplaye
                                     className="modal-title"
                                     id="exampleModalLabel"
                                 >
-                                    Add Student Class
+                                    {  editModalOpen? 'Update Student Class' :  'Add Student Class'
+                                       
+                                    }
                                 </h5>
                                 <button
                                     type="button"
@@ -42,7 +45,10 @@ const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayed,setIsDisplaye
                                         className="form-control"
                                         type="text"
                                         name="className"
-                                        placeholder="class Name "
+                                        placeholder="class Name"
+                                        value={inputClassName}
+                                        onChange={(e) => setInputClassName(e.target.value)}
+                                       
                                     />
                                 </div>
                             </div>
@@ -58,8 +64,11 @@ const AddStudentclassNameModal = ({ studentClassSubmit,isDisplayed,setIsDisplaye
                                 <button
                                     className="btn btn-primary"
                                     type="submit"
+                                    value={classNameData.id}
                                 >
-                                    Add Class Name
+                                     {  editModalOpen? 'Update Class Name' :  'Add Class Name'
+                                       
+                                    }
                                 </button>
                             </div>
                         </div>

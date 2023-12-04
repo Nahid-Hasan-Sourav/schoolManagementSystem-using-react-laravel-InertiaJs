@@ -8,22 +8,37 @@ import toast from "react-hot-toast";
 
 const StudentclassName = () => {
     const { flash, allClassName } = usePage().props;
-    console.log("Message:", allClassName);
-    const [isDisplayed, setIsDisplayed] = useState(false);
+  //set state open modal start here
+    const [isDisplayed, setIsDisplayed]    = useState(false);
+   //set state open modal end here
 
+    const [editModalOpen,seteditModalOpen] = useState(true);
+    const [classNameData,setClassNameData] = useState({})
+    const [inputClassName,setInputClassName]=useState();
+
+    //open student add class name modal
     const addStudentClassModalOpen = () => {
+        setInputClassName("")
         setIsDisplayed((prev) => !prev);
+        seteditModalOpen(false)
     };
+
+    //submit data from modal form
     const studentClassSubmit = (e) => {
         e.preventDefault();
+        console.log("Class Name : ",classNameData);
+        let data = e.nativeEvent.submitter.textContent;
+        let id   =e.nativeEvent.submitter.value
+        // console.log("E ----- ", e.nativeEvent.submitter.value);
+        // console.log("E ----- ", e.nativeEvent.submitter.textContent);
         const form = e.target;
-        const className = form.className.value;
+        // const className = form.className.value;
 
-        const classNameData = {
-            className,
+        const classNameDatas = {
+            className:inputClassName,
         };
-
-        router.post("/add-class", classNameData, {
+        if(data==="Add Class Name"){
+              router.post("/add-class", classNameDatas, {
             onSuccess: (props) => {
                 console.log("object,", props?.props?.flash?.success);
                 if (props?.props?.flash?.success) {
@@ -37,7 +52,48 @@ const StudentclassName = () => {
                 toast.success("CLASS ADDED SUCCESSFULLY !!");
             },
         });
+        }
+
+        else{
+            // console.log("Class Name Datas for update -- : ",classNameDatas)
+            router.put(`/update-class/${id}`, classNameDatas, {
+            onSuccess: (props) => {
+               
+                if (props?.props?.flash?.success) {
+                  
+                }
+            },
+            onFinish: (visit) => {
+
+                //close the modal and change the state start here
+                setIsDisplayed((prev) => !prev);
+                //close the modal and change the state end here
+                form.reset();
+                toast.success("CLASS NAME UPDATED SUCCESSFULLY !!");
+            },
+        });
+        }
+      
     };
+
+    //click the edit icon and showing the edit modal start here 
+    const editClassName =(e,data)=>{
+
+        setIsDisplayed((prev) => !prev);
+
+        seteditModalOpen(true);
+        //set the data for showing on modal start here
+        setClassNameData(data)
+        //set the data for showing on modal end here
+
+        //set the data for passed data in classNameDatas object start here
+        setInputClassName(data.name)    
+        //set the data for passed data in classNameDatas object end here
+
+    } 
+    //click the edit icon and showing the edit modal end here 
+
+       
 
     return (
         <>
@@ -72,7 +128,7 @@ const StudentclassName = () => {
                                         <th scope="row">{Number(index)+1}</th>
                                         <td>{data?.name}</td>
                                         <td>
-                                            <button className="btn btn-primary m-2">
+                                            <button className="btn btn-primary m-2" onClick={(e)=>editClassName(e,data)}>
                                                 <FiEdit />
                                             </button>
                                             <button className="btn btn-danger">
@@ -89,6 +145,11 @@ const StudentclassName = () => {
                         studentClassSubmit={studentClassSubmit}
                         setIsDisplayed={setIsDisplayed}
                         isDisplayed={isDisplayed}
+                        editModalOpen={editModalOpen}
+                        classNameData={classNameData}
+                        setClassNameData={setClassNameData}
+                        inputClassName={inputClassName}
+                        setInputClassName={setInputClassName}
                     />
                 </div>
 

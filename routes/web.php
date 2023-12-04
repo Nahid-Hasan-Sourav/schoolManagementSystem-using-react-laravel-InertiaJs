@@ -23,4 +23,5 @@ Route::get('/', function () {
 
 Route::get('/add-class-view',[StudentClassController::class,'index'])->name('view.student.class');
 Route::post('/add-class',[StudentClassController::class,'store'])->name('add.student.class');
+Route::put('/update-class/{id}',[StudentClassController::class,'update'])->name('update.student.class');
 
