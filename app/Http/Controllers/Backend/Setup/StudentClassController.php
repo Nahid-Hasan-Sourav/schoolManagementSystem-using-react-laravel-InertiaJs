@@ -11,8 +11,10 @@ use Inertia\Inertia;
 class StudentClassController extends Controller
 {
     public function index(){
+        $allClassName =StudentClass::all();
+        
         return Inertia::render('dashboard/StudentClass/StudentClass', [
-            'users' => "hghas ghasg"
+            'allClassName' => $allClassName
         ]);
     }
 
