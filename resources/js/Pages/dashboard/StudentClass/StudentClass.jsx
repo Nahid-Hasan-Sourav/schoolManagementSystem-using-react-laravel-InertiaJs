@@ -30,7 +30,7 @@ const StudentclassName = () => {
     const studentClassSubmit = (e) => {
         e.preventDefault();
         console.log("Class Name : ",classNameData);
-        let data = e.nativeEvent.submitter.textContent;
+        let btnText = e.nativeEvent.submitter.textContent;
         let id   =e.nativeEvent.submitter.value
         // console.log("E ----- ", e.nativeEvent.submitter.value);
         // console.log("E ----- ", e.nativeEvent.submitter.textContent);
@@ -40,8 +40,8 @@ const StudentclassName = () => {
         const classNameDatas = {
             className:inputClassName,
         };
-        if(data==="Add Class Name"){
-              router.post("/add-class", classNameDatas, {
+        if(btnText==="Add Class Name"){
+            router.post("/add-class", classNameDatas, {
             onSuccess: (props) => {
                 console.log("object,", props?.props?.flash?.success);
                 if (props?.props?.flash?.success) {

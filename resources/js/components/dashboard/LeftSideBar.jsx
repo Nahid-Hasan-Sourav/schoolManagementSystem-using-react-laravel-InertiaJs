@@ -28,7 +28,7 @@ const LeftSideBar = () => {
                             <span className="menu-item-label">Dashboard</span>
                         </div>
                     </a>
-                    <Link href="/add-class-view" className="sl-menu-link">
+                    <Link href="/student-class-view" className="sl-menu-link">
                         <div className="sl-menu-item">
                             <i className="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
                             <span className="menu-item-label">
@@ -36,13 +36,13 @@ const LeftSideBar = () => {
                             </span>
                         </div>
                     </Link>
-                     <a href="#" className="sl-menu-link">
+                     <Link href="/student-year-view" className="sl-menu-link">
                         <div className="sl-menu-item">
                             <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
                             <span className="menu-item-label">Add Year</span>
                             <i className="menu-item-arrow fa fa-angle-down"></i>
                         </div>
-                    </a>
+                    </Link>
                     {/*
                     <ul className="sl-menu-sub nav flex-column">
                         <li className="nav-item">
