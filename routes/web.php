@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Backend\Setup\StudentClassController;
+use App\Http\Controllers\StudentGroupController;
+use App\Http\Controllers\StudentShiftController;
 use App\Http\Controllers\StudentYearController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,5 +36,18 @@ Route::get('/student-year-view',[StudentYearController::class,'index'])->name('v
 Route::post('/add-year',[StudentYearController::class,'store'])->name('add.student.year');
 Route::put('/update-year/{id}',[StudentYearController::class,'update'])->name('update.student.year');
 Route::delete('/delete-year/{id}',[StudentYearController::class,'delete'])->name('delete.student.year');
-
 //student year start here
+
+//student group start here
+Route::get('/group-view',[StudentGroupController::class,'index'])->name('view.student.group');
+Route::post('/add-group',[StudentGroupController::class,'store'])->name('add.student.group');
+Route::put('/update-group/{id}',[StudentGroupController::class,'update'])->name('update.student.group');
+Route::delete('/delete-group/{id}',[StudentGroupController::class,'delete'])->name('delete.student.group');
+//student group end here
+
+//student shift start here
+Route::get('/shift-view',[StudentShiftController::class,'index'])->name('view.student.shift');
+Route::post('/add-shift',[StudentShiftController::class,'store'])->name('add.student.shift');
+Route::put('/update-shift/{id}',[StudentShiftController::class,'update'])->name('update.student.shift');
+Route::delete('/delete-shift/{id}',[StudentShiftController::class,'delete'])->name('delete.student.shift');
+//student shift end here
