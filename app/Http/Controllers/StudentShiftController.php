@@ -29,10 +29,10 @@ class StudentShiftController extends Controller
 
     public function update(Request $request,$id){
         $updatedData = StudentShift::find($id);
-        
+
         $updatedData->name = $request->inputShiftValue;
         $updatedData->save();
-        
+
         return redirect()->route('view.student.shift')
         ->with('success', 'Request has been updated successfully!!!');
     }

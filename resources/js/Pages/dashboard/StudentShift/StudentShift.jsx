@@ -1,24 +1,104 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import DashBoardLayout from '../../../Layout/DashBoardLayout';
 import { MdDelete } from 'react-icons/md';
 import { FiEdit } from 'react-icons/fi';
 import StudentShiftModal from '../../../components/modal/StudentShift/StudentShiftModal';
 import { AppContext } from '../../../context/AppProvider';
+import { router, usePage } from '@inertiajs/react';
+import toast from 'react-hot-toast';
 
 const StudentShift = () => {
+    const { flash, allShift } = usePage().props;
+
     const {isDisplayedModal, setIsDisplayedModal,seteditModalOpen} = useContext(AppContext)
+    const [inputShiftValue,setinputShiftValue] = useState();
+    const [studentShiftData,setstudentShiftData] = useState({});
 
     const addStudentClassModalOpen =()=>{
-        setIsDisplayedModal((prev)=>!prev)
+        setstudentShiftData('');
+        seteditModalOpen(false);
+        setIsDisplayedModal((prev)=>!prev);
     }
-    const groupSubmit=()=>{
+    const groupSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        let btnText = e.nativeEvent.submitter.textContent;
+        let id = e.nativeEvent.submitter.value;
 
-    }
-    const deleteGroup =()=>{
+        const shiftData = {
+            inputShiftValue,
+        };
 
-    }
-    const editGroup =()=>{
-        
+        if (btnText === "Add Student Shift") {
+
+            router.post("/add-shift", shiftData, {
+                onSuccess: (props) => {
+                    // console.log("object,", props?.props?.flash?.success);
+                    if (props?.props?.flash?.success) {
+                    }
+                },
+                onFinish: (visit) => {
+                    setIsDisplayedModal((prev) => !prev);
+                    form.reset();
+                    toast.success("Shift ADDED SUCCESSFULLY !!");
+                },
+            });
+        }
+        if (btnText === "Update Student Shift") {
+            // console.log("Update Year : ", yearData);
+            // console.log("Id : ", id);
+            router.put(`/update-shift/${id}`, shiftData, {
+                onSuccess: (props) => {
+                    //console.log("object,", props?.props?.flash?.success);
+                    if (props?.props?.flash?.success) {
+
+                    }
+                },
+                onFinish: (visit) => {
+                    setIsDisplayedModal((prev) => !prev);
+                    form.reset();
+                    toast.success("SHIFT UPDATED SUCCESSFULLY !!");
+                },
+            });
+        }
+    };
+
+    const editShift = (e, data) => {
+        seteditModalOpen(true);
+        setIsDisplayedModal((prev) => !prev);
+        setinputShiftValue(data.name);
+        setstudentShiftData(data);
+    };
+    const deleteShift = (e,id) =>{
+        swal({
+            title: "Are you sure?",
+            text: "You Want Top Delete The Shift  ?? ",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                // console.log(willDelete)
+
+                router.delete(`/delete-shift/${id}`,{
+                    onSuccess: (props) => {
+
+                        if (props?.props?.flash?.success) {
+
+                        }
+                    },
+                    onFinish: (visit) => {
+
+                        swal("Shift has been deleted!", {
+                            icon: "success",
+                          });
+                    },
+                });
+            } else {
+              swal("You Don't Want to delete it.");
+            }
+          });
     }
     return (
         <>
@@ -50,20 +130,20 @@ const StudentShift = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {allGroup?.map((data, index) => {
-                                    return ( */}
+                               {allShift?.map((data, index) => {
+                                    return (
                                         <tr>
                                             <th scope="row">
-                                               1
-                                          
+                                              {Number(index)+1}
+
                                             </th>
-                                            <td>qweqw</td>
+                                            <td>{data?.name}</td>
                                             <td>
                                                 <button
                                                     className="btn btn-primary m-2"
-                                                    
+
                                                     onClick={(e) =>
-                                                        editGroup(e, data)
+                                                        editShift(e, data)
                                                     }
                                                 >
                                                     <FiEdit />
@@ -71,7 +151,7 @@ const StudentShift = () => {
                                                 <button
                                                     className="btn btn-danger"
                                                     onClick={(e) =>
-                                                        deleteGroup(
+                                                        deleteShift(
                                                             e,
                                                             data.id
                                                         )
@@ -81,16 +161,17 @@ const StudentShift = () => {
                                                 </button>
                                             </td>
                                         </tr>
-                                     {/* );
-                                })}  */}
+                                     );
+                                })}
                             </tbody>
                         </table>
                     </div>
                  <StudentShiftModal
                  groupSubmit={groupSubmit}
-                //  inputGroupValue={inputGroupValue}
-                //  setinputGroupValue={setinputGroupValue}
-                //  studentGroupData={studentGroupData}
+                 inputShiftValue={inputShiftValue}
+                 setinputShiftValue={setinputShiftValue}
+                 studentShiftData={studentShiftData}
+                 setstudentShiftData={setstudentShiftData}
                  />
                 </div>
         </DashBoardLayout>

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../../context/AppProvider';
 
-const StudentShiftModal = () => {
+const StudentShiftModal = ({groupSubmit,inputShiftValue,setinputShiftValue,studentShiftData}) => {
     const{isDisplayedModal,setIsDisplayedModal,editModalOpen,closeModal} = useContext(AppContext)
 
     return (
@@ -20,7 +20,7 @@ const StudentShiftModal = () => {
                                 className="modal-title"
                                 id="exampleModalLabel"
                             >
-                                {  editModalOpen? 'Update Student Group' :  'Add Student Group'
+                                {  editModalOpen? 'Update Student Shift' :  'Add Student Shift'
 
                                 }
                             </h5>
@@ -34,7 +34,7 @@ const StudentShiftModal = () => {
                         <div className="modal-body">
                             <div className="form-group">
                                 <label className="form-control-label">
-                                     Group:{" "}
+                                     Shift:{" "}
                                     <span className="tx-danger">*</span>
                                 </label>
                                 <input
@@ -42,8 +42,8 @@ const StudentShiftModal = () => {
                                     type="text"
                                     name="group"
                                     placeholder="y e a r"
-                                    // value={inputGroupValue}
-                                    // onChange={(e) => setinputGroupValue(e.target.value)}
+                                    value={inputShiftValue}
+                                    onChange={(e) => setinputShiftValue(e.target.value)}
 
                                 />
                             </div>
@@ -60,9 +60,9 @@ const StudentShiftModal = () => {
                             <button
                                 className="btn btn-primary"
                                 type="submit"
-                                // value={studentGroupData.id}
+                                value={studentShiftData.id}
                             >
-                                 {  editModalOpen? 'Update Student Group' :  'Add Student Group'
+                                 {  editModalOpen? 'Update Student Shift' :  'Add Student Shift'
 
                                 }
                             </button>
