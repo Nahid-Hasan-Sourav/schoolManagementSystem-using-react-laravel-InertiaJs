@@ -2,7 +2,8 @@ import { Link, usePage } from '@inertiajs/react';
 import React from 'react';
 
 const LeftSideBar = () => {
-    const {route}=usePage()
+    const {route,url}=usePage()
+    console.log("Url --- : ",url)
     return (
         <>
             <div className="sl-sideleft">
@@ -22,13 +23,13 @@ const LeftSideBar = () => {
 
                 <label className="sidebar-label">Navigation</label>
                 <div className="sl-sideleft-menu">
-                    <a href="index.html" className="sl-menu-link active">
+                    <a href="index.html" className="sl-menu-link">
                         <div className="sl-menu-item">
                             <i className="menu-item-icon icon ion-ios-home-outline tx-22"></i>
                             <span className="menu-item-label">Dashboard</span>
                         </div>
                     </a>
-                    <Link href="/student-class-view" className="sl-menu-link">
+                    <Link href="/student-class-view" className={`sl-menu-link ${url === '/student-class-view' ? 'active' : ''}`}>
                         <div className="sl-menu-item">
                             <i className="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
                             <span className="menu-item-label">
@@ -36,10 +37,24 @@ const LeftSideBar = () => {
                             </span>
                         </div>
                     </Link>
-                     <Link href="/student-year-view" className="sl-menu-link">
+                     <Link href="/student-year-view" className={`sl-menu-link ${url === '/student-year-view' ? 'active' : ''}`}>
                         <div className="sl-menu-item">
                             <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
                             <span className="menu-item-label">Add Year</span>
+                            <i className="menu-item-arrow fa fa-angle-down"></i>
+                        </div>
+                    </Link>
+                     <Link href="/group-view" className={`sl-menu-link ${url === '/group-view' ? 'active' : ''}`}>
+                        <div className="sl-menu-item">
+                            <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                            <span className="menu-item-label">Add Group</span>
+                            <i className="menu-item-arrow fa fa-angle-down"></i>
+                        </div>
+                    </Link>
+                    <Link href="/shift-view" className={`sl-menu-link ${url === '/shift-view' ? 'active' : ''}`}>
+                        <div className="sl-menu-item">
+                            <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                            <span className="menu-item-label">Add Shift</span>
                             <i className="menu-item-arrow fa fa-angle-down"></i>
                         </div>
                     </Link>
