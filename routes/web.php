@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\Setup\StudentClassController;
+use App\Http\Controllers\FeeCategoryController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\StudentShiftController;
 use App\Http\Controllers\StudentYearController;
@@ -51,3 +52,10 @@ Route::post('/add-shift',[StudentShiftController::class,'store'])->name('add.stu
 Route::put('/update-shift/{id}',[StudentShiftController::class,'update'])->name('update.student.shift');
 Route::delete('/delete-shift/{id}',[StudentShiftController::class,'delete'])->name('delete.student.shift');
 //student shift end here
+
+//student fee category start here
+Route::get('/fee-category-view',[FeeCategoryController::class,'index'])->name('view.fee.category');
+Route::post('/add-fee-category',[FeeCategoryController::class,'store'])->name('add.fee.category');
+Route::put('/update-fee-category/{id}',[FeeCategoryController::class,'update'])->name('update.fee.category');
+Route::delete('/delete-fee-category/{id}',[FeeCategoryController::class,'delete'])->name('delete.fee.category');
+//student fee category end here
