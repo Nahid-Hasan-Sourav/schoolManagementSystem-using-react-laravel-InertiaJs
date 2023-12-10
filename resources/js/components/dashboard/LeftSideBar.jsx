@@ -82,6 +82,14 @@ const LeftSideBar = () => {
                         </div>
                     </Link>
 
+                    <Link href="/fee-category-amount-view" className={`sl-menu-link ${url === '/fee-category-amount-view' ? 'active' : ''}`}>
+                        <div className="sl-menu-item">
+                            <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                            <span className="menu-item-label">Fee Category Amount</span>
+                            <i className="menu-item-arrow fa fa-angle-down"></i>
+                        </div>
+                    </Link>
+
 
                     </ul>
 
