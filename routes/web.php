@@ -63,7 +63,10 @@ Route::delete('/delete-fee-category/{id}',[FeeCategoryController::class,'delete'
 
 //student fee category amount start here
 Route::get('/fee-category-amount-view',[FeeCategoryAmountController::class,'index'])->name('view.fee.category.amoount');
-Route::post('/add-fee-category',[FeeCategoryAmountController::class,'store'])->name('add.fee.category.amoount');
+Route::get('/add-fee-category-view',[FeeCategoryAmountController::class,'storeView'])->name('add.fee.category.amoount');
+Route::post('/add-fee-category-view',[FeeCategoryAmountController::class,'store'])->name('post.fee.category.amoount');
 Route::put('/update-fee-category/{id}',[FeeCategoryAmountController::class,'update'])->name('update.fee.category.amoount');
 Route::delete('/delete-fee-category/{id}',[FeeCategoryAmountController::class,'delete'])->name('delete.fee.category.amoount');
 //student fee category amount end here
+
+
