@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\Setup\StudentClassController;
+use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeCategoryAmountController;
 use App\Http\Controllers\FeeCategoryController;
 use App\Http\Controllers\StudentGroupController;
@@ -69,5 +70,13 @@ Route::get('/edit-fee-category/{id}',[FeeCategoryAmountController::class,'edit']
 Route::post('/update-fee-category-amount',[FeeCategoryAmountController::class,'update'])->name('update.fee.category.amoount');
 Route::delete('/delete-fee-category/amount/{id}',[FeeCategoryAmountController::class,'delete'])->name('delete.fee.category.amoount');
 //student fee category amount end here
+
+
+//student exam type amount start here
+Route::get('/exam-type-view',[ExamTypeController::class,'index'])->name('view.examtype');
+Route::post('/add-exam-type',[ExamTypeController::class,'store'])->name('add.examtype');
+Route::post('/update-fee-category-amount',[ExamTypeController::class,'update'])->name('update.examtype');
+Route::delete('/delete-fee-category/amount/{id}',[ExamTypeController::class,'delete'])->name('delete.examtype');
+//student exam type amount end here
 
 
