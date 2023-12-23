@@ -90,6 +90,14 @@ const LeftSideBar = () => {
                         </div>
                     </Link>
 
+                    <Link href="/exam-type-view" className={`sl-menu-link ${url === '/exam-type-view' ? 'active' : ''}`}>
+                        <div className="sl-menu-item">
+                            <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                            <span className="menu-item-label">Exam Type</span>
+                            <i className="menu-item-arrow fa fa-angle-down"></i>
+                        </div>
+                    </Link>
+
 
                     </ul>
 
