@@ -2,6 +2,7 @@
 import React, { useContext, useRef } from "react";
 import { AppContext } from "../../../context/AppProvider";
 
+
 const AddStudentclassNameModal = ({ studentClassSubmit,classNameData,setClassNameData,setInputClassName,inputClassName}) => {
     const {isDisplayedModal,setIsDisplayedModal,closeModal,editModalOpen} = useContext(AppContext)
 
