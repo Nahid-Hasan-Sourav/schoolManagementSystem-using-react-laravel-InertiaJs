@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\Backend\Setup\StudentClassController;
 use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeCategoryAmountController;
@@ -85,6 +86,13 @@ Route::get('/school-subject-view',[SchoolSubjectController::class,'index'])->nam
 Route::post('/add-subject',[SchoolSubjectController::class,'store'])->name('add.subject');
 Route::put('/update-subject/{id}',[SchoolSubjectController::class,'update'])->name('update.subject');
 Route::delete('/delete-subject/{id}',[SchoolSubjectController::class,'delete'])->name('delete.subject');
+//school subject end here
+
+//school subject start here
+Route::get('/assign-subect-view',[AssignSubjectController::class,'index'])->name('view.assignsubject');
+Route::post('/add-assign-subect',[AssignSubjectController::class,'store'])->name('add.assignsubject');
+Route::put('/update-assign-subect/{id}',[AssignSubjectController::class,'update'])->name('update.assignsubject');
+Route::delete('/delete-assign-subect/{id}',[AssignSubjectController::class,'delete'])->name('delete.assignsubject');
 //school subject end here
 
 
