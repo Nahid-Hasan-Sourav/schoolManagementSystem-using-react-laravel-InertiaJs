@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/AppProvider";
 
-const ExamTypeModal = ({inputExamType,setinputExamType,examTypeData}) => {
+const ExamTypeModal = ({inputExamType,setinputExamType,examTypeData,examTypeSubmit}) => {
     const {isDisplayedModal,setIsDisplayedModal,closeModal,editModalOpen} = useContext(AppContext)
 
     return (

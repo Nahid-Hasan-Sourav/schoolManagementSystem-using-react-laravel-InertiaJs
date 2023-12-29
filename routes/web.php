@@ -74,9 +74,9 @@ Route::delete('/delete-fee-category/amount/{id}',[FeeCategoryAmountController::c
 
 //student exam type amount start here
 Route::get('/exam-type-view',[ExamTypeController::class,'index'])->name('view.examtype');
-Route::post('/add-exam-type',[ExamTypeController::class,'store'])->name('add.examtype');
-Route::post('/update-fee-category-amount',[ExamTypeController::class,'update'])->name('update.examtype');
-Route::delete('/delete-fee-category/amount/{id}',[ExamTypeController::class,'delete'])->name('delete.examtype');
+Route::post('examType',[ExamTypeController::class,'storeData'])->name('examtype.add');
+Route::put('/update-exam-type/{id}',[ExamTypeController::class,'update'])->name('update.examtype');
+Route::delete('/delete-exam-type/{id}',[ExamTypeController::class,'delete'])->name('delete.examtype');
 //student exam type amount end here
 
 
