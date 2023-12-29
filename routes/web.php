@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\Setup\StudentClassController;
 use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeCategoryAmountController;
 use App\Http\Controllers\FeeCategoryController;
+use App\Http\Controllers\SchoolSubjectController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\StudentShiftController;
 use App\Http\Controllers\StudentYearController;
@@ -78,5 +79,13 @@ Route::post('examType',[ExamTypeController::class,'storeData'])->name('examtype.
 Route::put('/update-exam-type/{id}',[ExamTypeController::class,'update'])->name('update.examtype');
 Route::delete('/delete-exam-type/{id}',[ExamTypeController::class,'delete'])->name('delete.examtype');
 //student exam type amount end here
+
+//school subject start here
+Route::get('/school-subject-view',[SchoolSubjectController::class,'index'])->name('view.subject');
+Route::post('/add-subject',[SchoolSubjectController::class,'store'])->name('add.subject');
+Route::put('/update-subject/{id}',[SchoolSubjectController::class,'update'])->name('update.subject');
+Route::delete('/delete-subject/{id}',[SchoolSubjectController::class,'delete'])->name('delete.subject');
+//school subject end here
+
 
 
