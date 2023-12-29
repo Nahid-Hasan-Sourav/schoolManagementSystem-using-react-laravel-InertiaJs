@@ -98,6 +98,29 @@ const LeftSideBar = () => {
                         </div>
                     </Link>
 
+                    <Link href="/school-subject-view" className={`sl-menu-link ${url === '/school-subject-view' ? 'active' : ''}`}>
+                        <div className="sl-menu-item">
+                            <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                            <span className="menu-item-label">School Subject</span>
+                            <i className="menu-item-arrow fa fa-angle-down"></i>
+                        </div>
+                    </Link>
+                    <Link href="/school-subject-view" className={`sl-menu-link ${url === '/school-subject-view' ? 'active' : ''}`}>
+                        <div className="sl-menu-item">
+                            <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                            <span className="menu-item-label">Assign Subject</span>
+                            <i className="menu-item-arrow fa fa-angle-down"></i>
+                        </div>
+                    </Link>
+                    <Link href="/school-subject-view" className={`sl-menu-link ${url === '/school-subject-view' ? 'active' : ''}`}>
+                        <div className="sl-menu-item">
+                            <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                            <span className="menu-item-label">Designation</span>
+                            <i className="menu-item-arrow fa fa-angle-down"></i>
+                        </div>
+                    </Link>
+
+
 
                     </ul>
 
