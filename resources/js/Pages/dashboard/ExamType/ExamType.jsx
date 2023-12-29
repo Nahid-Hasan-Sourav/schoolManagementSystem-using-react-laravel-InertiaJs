@@ -2,11 +2,14 @@ import React, { useContext, useState } from 'react';
 import DashBoardLayout from '../../../Layout/DashBoardLayout';
 import { AppContext } from '../../../context/AppProvider';
 import ExamTypeModal from '../../../components/modal/ExamType/ExamTypeModal';
-import { usePage } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
+import toast from 'react-hot-toast';
+import { FiEdit } from "react-icons/fi";
+import { MdDelete } from "react-icons/md";
 
 const ExamType = () => {
     const {setIsDisplayedModal,editModalOpen,seteditModalOpen} = useContext(AppContext)
-    const { flash, feeCategory } = usePage().props;
+    const { flash, datas } = usePage().props;
     const [examTypeData,setexamTypeData] = useState({})
     const [inputExamType,setinputExamType]=useState();
     const addStudentClassModalOpen=()=>{
@@ -21,16 +24,15 @@ const ExamType = () => {
             console.log("Class Name : ",examTypeData);
             let btnText = e.nativeEvent.submitter.textContent;
             let id   =e.nativeEvent.submitter.value
-            // console.log("E ----- ", e.nativeEvent.submitter.value);
-            // console.log("E ----- ", e.nativeEvent.submitter.textContent);
             const form = e.target;
-            // const className = form.className.value;
+
 
             const examTypeDatas = {
-                feeCategory:inputExamType,
+                inputExamType,
             };
             if(btnText==="Add Exam Type"){
-                router.post("/add-fee-category", examTypeDatas, {
+                console.log("Exam type btn == : ",examTypeDatas);
+                router.post("/examType", examTypeDatas, {
                 onSuccess: (props) => {
                     console.log("object,", props?.props?.flash?.success);
                     if (props?.props?.flash?.success) {
@@ -41,14 +43,14 @@ const ExamType = () => {
                 onFinish: (visit) => {
                     setIsDisplayedModal((prev) => !prev);
                     form.reset();
-                    toast.success("FEE CATEGORY ADDED SUCCESSFULLY !!");
+                    toast.success("EXAM TYPE ADDED SUCCESSFULLY !!");
                 },
             });
             }
 
             else{
                 // console.log("Class Name Datas for update -- : ",examTypeDatas)
-                router.put(`/update-fee-category/${id}`, examTypeDatas, {
+                router.put(`/update-exam-type/${id}`, examTypeDatas, {
                 onSuccess: (props) => {
 
                     if (props?.props?.flash?.success) {
@@ -69,7 +71,7 @@ const ExamType = () => {
         };
 
           //click the edit icon and showing the edit modal start here
-    const editFeeCategory =(e,data)=>{
+    const editExamType =(e,data)=>{
 
         setIsDisplayedModal((prev) => !prev);
 
@@ -85,7 +87,7 @@ const ExamType = () => {
     }
     //click the edit icon and showing the edit modal end here
 
-    const deleteFeeCategory = (e,id) =>{
+    const deleteExamType = (e,id) =>{
         swal({
             title: "Are you sure?",
             text: "You Want Top Delete The Fee Category ?? ",
@@ -97,7 +99,7 @@ const ExamType = () => {
             if (willDelete) {
                 // console.log(willDelete)
 
-                router.delete(`/delete-fee-category/${id}`,{
+                router.delete(`/delete-exam-type/${id}`,{
                     onSuccess: (props) => {
 
                         if (props?.props?.flash?.success) {
@@ -122,7 +124,7 @@ const ExamType = () => {
              <DashBoardLayout>
                 <div className="card">
                     <div className="card-header d-flex justify-content-between align-items-center">
-                        <h1>Student Class List</h1>
+                        <h1>Student Exam Type</h1>
                         <button
                             type="button"
                             className="btn btn-success"
@@ -142,25 +144,25 @@ const ExamType = () => {
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            {/* <tbody>
-                                {allClassName?.map((data,index) => {
+                            <tbody>
+                                {datas?.map((data,index) => {
                                     return(
 
                                         <tr>
                                         <th scope="row">{Number(index)+1}</th>
                                         <td>{data?.name}</td>
                                         <td>
-                                            <button className="btn btn-primary m-2" onClick={(e)=>editClassName(e,data)}>
+                                            <button className="btn btn-primary m-2" onClick={(e)=>editExamType(e,data)}>
                                                 <FiEdit />
                                             </button>
-                                            <button className="btn btn-danger" onClick={(e)=>deleteClassName(e,data.id)}>
+                                            <button className="btn btn-danger" onClick={(e)=>deleteExamType(e,data.id)}>
                                                 <MdDelete />
                                             </button>
                                         </td>
                                     </tr>
                                     )
                                 })}
-                            </tbody> */}
+                            </tbody>
                         </table>
                     </div>
                    <ExamTypeModal
