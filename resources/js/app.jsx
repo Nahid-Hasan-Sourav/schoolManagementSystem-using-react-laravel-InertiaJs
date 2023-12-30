@@ -3,6 +3,7 @@ import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
 import { Toaster } from "react-hot-toast";
 import AppProvider from "./context/AppProvider";
+// import { Ziggy } from './ziggy.js';
 
 createInertiaApp({
     resolve: (name) => {
