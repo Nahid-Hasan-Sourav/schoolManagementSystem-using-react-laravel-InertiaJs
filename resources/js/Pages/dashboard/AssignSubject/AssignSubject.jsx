@@ -6,9 +6,10 @@ import AssignSubjectModal from '../../../components/modal/AssignSubject/AssignSu
 const AssignSubject = () => {
     const {setIsDisplayedModal,editModalOpen,seteditModalOpen} = useContext(AppContext)
 
+    // const route = useRoute(Ziggy);
 
-    const openModal=()=>{
-        setIsDisplayedModal((prev)=>!prev)
+        const openModal=()=>{
+        // setIsDisplayedModal((prev)=>!prev)
     }
 
     return (
@@ -17,13 +18,13 @@ const AssignSubject = () => {
             <div className="card">
                     <div className="card-header d-flex justify-content-between align-items-center">
                         <h1>Assign Subject To Class</h1>
-                        <button
-
+                        <a
+                            href={route('view.store.assignsubject')}
                             className="btn btn-success"
                             onClick={openModal}
                         >
                             Assign Subject
-                        </button>
+                        </a>
                     </div>
                     <div className="card-body ">
                         <table className="table table-striped ">
@@ -62,9 +63,9 @@ const AssignSubject = () => {
                             </tbody>
                         </table>
                     </div>
-                    <AssignSubjectModal>
+                    {/* <AssignSubjectModal>
 
-                    </AssignSubjectModal>
+                    </AssignSubjectModal> */}
                 </div>
             </div>
         </DashBoardLayout>

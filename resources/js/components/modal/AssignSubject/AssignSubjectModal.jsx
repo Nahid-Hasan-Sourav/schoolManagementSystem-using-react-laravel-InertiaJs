@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../../context/AppProvider";
 import { FaPlusSquare } from "react-icons/fa";
-import '../AssignSubject/AssignSubjectModal.css'
+// import '../AssignSubject/AssignSubjectModal.css'
 const AssignSubjectModal = () => {
     const { isDisplayedModal, editModalOpen, closeModal } =
         useContext(AppContext);
