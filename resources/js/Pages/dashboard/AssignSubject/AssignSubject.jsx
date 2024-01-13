@@ -2,10 +2,18 @@ import React, { useContext } from 'react';
 import DashBoardLayout from '../../../Layout/DashBoardLayout';
 import { AppContext } from '../../../context/AppProvider';
 import AssignSubjectModal from '../../../components/modal/AssignSubject/AssignSubjectModal';
+import { usePage } from '@inertiajs/react';
+import { FiEdit } from "react-icons/fi";
+import { MdDelete } from "react-icons/md";
+import { IoEyeSharp } from "react-icons/io5";
+
 
 const AssignSubject = () => {
     const {setIsDisplayedModal,editModalOpen,seteditModalOpen} = useContext(AppContext)
-
+    const { flash,datas} = usePage().props;
+    console.log("This is all data : ",datas)
+    
+     
     // const route = useRoute(Ziggy);
 
         const openModal=()=>{
@@ -30,27 +38,27 @@ const AssignSubject = () => {
                         <table className="table table-striped ">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Fee Category</th>
-                                    <th scope="col">Class </th>
-                                    <th scope="col">Fee Amount</th>
-                                   <th scope="col">Action</th>
+                                    <th scope="col" style={{ width: "10%" }}>#</th>
+                                    <th scope="col" style={{ width: "70%" }}>Class Name</th>
+                                   <th scope="col"  style={{ width: "20%" }}>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {datas?.map((data,index) => {
+                                {datas?.map((data,index) => {
                                     return(
 
                                         <tr key={index}>
                                         <th scope="row">{Number(index)+1}</th>
-                                        <td>{data?.fee_category?.name}</td>
-                                        <td>{data?.student_class?.name}</td>
-                                        <td>{data?.amount}</td>
+                                        <td>{data?.class?.name}</td>
+                                     
 
                                         <td>
-                                            <a href={`/edit-fee-category/${data.id}`} className="btn btn-primary m-2" >
-                                                <FiEdit/>
+                                             <a href={`/assign/subject/details/${data?.class?.id}`} className="btn btn-success m-2" >
+                                                <IoEyeSharp />
                                             </a>
+                                            <a href={`/assign/subject/edit/${data.id}`} className="btn btn-primary m-2" >
+                                                <FiEdit/>
+                                            </a>                                          
                                             <button className="btn btn-danger"
                                             onClick={(e)=>deleteFeeCategoryAmount(e,data?.id)}
                                             >
@@ -59,7 +67,7 @@ const AssignSubject = () => {
                                         </td>
                                     </tr>
                                     )
-                                })} */}
+                                })}
                             </tbody>
                         </table>
                     </div>

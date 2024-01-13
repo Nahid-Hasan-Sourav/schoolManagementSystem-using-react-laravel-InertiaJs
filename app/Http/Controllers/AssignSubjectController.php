@@ -12,9 +12,9 @@ class AssignSubjectController extends Controller
 {
     //
     public function index(){
-        $dadas = AssignSubject::all();
+        $datas = AssignSubject::with(['class','subject'])->get();
         return Inertia::render('dashboard/AssignSubject/AssignSubject',[
-            'dadas'=>$dadas
+            'datas'=>$datas
         ]);
     }
 
@@ -32,7 +32,7 @@ class AssignSubjectController extends Controller
 
         foreach($request->formattedData as $data){
             $assignSubject = new AssignSubject();
-            $assignSubject->class_id         =$request->selectedClass;
+            $assignSubject->class_id        =$request->selectedClass;
             $assignSubject->subject_id 	    =$data['subject'];
             $assignSubject->full_mark       =$data['fullMark'];
             $assignSubject->pass_mark       =$data['passMark'];
@@ -41,7 +41,34 @@ class AssignSubjectController extends Controller
             $assignSubject->save();
         };
 
-        return redirect()->route('view.assignsubject')->with('succes','subject assign successfully');
+        return redirect()->route('view.assignsubject')->with('success','subject assign successfully');
 
+    }
+
+    public function assignSubjectDetails($id){
+        $details = AssignSubject::with([
+            'class' => function ($q) {
+                $q->select('id','name');
+            },
+            'subject'=>function($q){
+                $q->select('id','name');
+            },
+        ])->where('class_id', $id)->get();
+        
+        
+        return Inertia::render('dashboard/AssignSubject/AssignSubjectDetails',[
+            'details'=>$details
+        ]);
+    }
+
+    public function assignSubjectEdit($id){
+        $allClass = StudentClass::all();
+        $allSubject = SchoolSubject::all();
+        $data       = AssignSubject::find($id);
+        return Inertia::render('dashboard/AssignSubject/AssignSubjectEdit',[
+        "allClass"    =>$allClass,
+        "allSubject"  =>$allSubject,
+        "data"        =>$data ,
+        ]);
     }
 }
