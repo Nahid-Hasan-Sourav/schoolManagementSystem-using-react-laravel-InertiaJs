@@ -64,11 +64,44 @@ class AssignSubjectController extends Controller
     public function assignSubjectEdit($id){
         $allClass = StudentClass::all();
         $allSubject = SchoolSubject::all();
-        $data       = AssignSubject::find($id);
+        $data       = AssignSubject::with([
+            'class' => function ($q) {
+                $q->select('id','name');
+            },
+            'subject'=>function($q){
+                $q->select('id','name');
+            },
+        ])-> find($id);
         return Inertia::render('dashboard/AssignSubject/AssignSubjectEdit',[
         "allClass"    =>$allClass,
         "allSubject"  =>$allSubject,
         "data"        =>$data ,
         ]);
+    }
+
+    public function assignSubjectUpdate(Request $request){
+        $id = $request->id;
+
+        $updateData = AssignSubject::find($id);
+        $updateData->class_id         =  $request->classId;
+        $updateData->subject_id       =  $request->subject;
+        $updateData->full_mark        =  $request->fullMark;
+        $updateData->pass_mark        =  $request->passMark;
+        $updateData->subjective_mark  =  $request->subjectiveMark;
+
+        $updateData->save();
+
+        return redirect()->route('view.assignsubject')->with('success','assign subject update successfully');
+
+
+
+    }
+
+    public function delete($id){
+        $data = AssignSubject::find($id);
+        $data->delete();
+
+        return redirect()->route('view.assignsubject')->with('success','assign subject delete successfully');
+
     }
 }

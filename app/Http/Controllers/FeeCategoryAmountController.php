@@ -64,7 +64,7 @@ class FeeCategoryAmountController extends Controller
 
     public function update(Request $request){
         $updateData = FeeCategoryAmount::find($request->id);
-
+    
 
         $updateData->fee_category_id  = $request->feeCategory;
         $updateData->class_id         = $request->classId;

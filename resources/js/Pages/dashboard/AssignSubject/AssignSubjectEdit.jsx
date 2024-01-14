@@ -1,9 +1,47 @@
-import { usePage } from '@inertiajs/react';
-import React from 'react';
+import { router, usePage } from '@inertiajs/react';
+import React, { useState } from 'react';
 import DashBoardLayout from '../../../Layout/DashBoardLayout';
 
 const AssignSubjectEdit = () => {
-    const { flash, allClass,allSubject,data} = usePage().props;
+    const {flash, allClass,allSubject,data} = usePage().props;
+    const [fullMark,setFullMark]=useState(data?.full_mark);
+    const [passMark,setPassMark]=useState(data?.pass_mark);
+    const [subjectiveMark,setSubjectiveMark]=useState(data?.subjective_mark);
+
+    const submitAssignSubject=(e)=>{
+        e.preventDefault();
+        const form = e.target;
+        const classId = form.class_id.value;
+        const subject = form.subject.value;
+        let id = data.id;
+
+        const formData = {
+            classId,
+            subject,
+            fullMark,
+            passMark,
+            subjectiveMark,
+            id
+
+
+        }
+        router.post("/update-assign-subect/", formData, {
+            onSuccess: (props) => {
+                console.log("object,", props?.props?.flash?.success);
+                if (props?.props?.flash?.success) {
+                    toast.success("Fee Category Amount Added Successfully");
+
+                }
+            },
+            onFinish: (props) => {
+                // if(props?.props?.flash?.success){
+                //     toast.success("Fee Category Amount Added Successfully");
+
+                // }
+            },
+        });
+
+    }
 
     return (
         <DashBoardLayout>
@@ -13,7 +51,7 @@ const AssignSubjectEdit = () => {
              </div>
              <hr />
 
-             <form className="card-body ">
+             <form className="card-body " onSubmit={(e)=>submitAssignSubject(e)}>
 
              <div className="row">
                  <div className="col-lg">
@@ -24,14 +62,16 @@ const AssignSubjectEdit = () => {
                                  </label>
                                  <select
                                      className="form-select"
-                                     name="fee_category"
+                                     name="class_id"
 
                                  >
                                      <option value="" >Select Class</option>
                                      {
-                                         allClass?.map((data)=>{
+                                         allClass?.map((item)=>{
                                              return(
-                                                 <option value={data.id}>{data.name}</option>
+                                                 <option value={item.id}
+                                                 selected={item.id===data?.class_id}
+                                                 >{item.name}</option>
                                              )
                                          })
                                      }
@@ -52,14 +92,15 @@ const AssignSubjectEdit = () => {
                                  </label>
                                  <select
                                      className="form-select"
+                                     name='subject'
                                      aria-label="Default select example"
                                  >
                                      <option value="" >Select Subject</option>
 
                                      {
-                                         allSubject?.map((data)=>{
+                                         allSubject?.map((item)=>{
                                             return(
-                                             <option value={data.id}>{data.name}</option>
+                                             <option selected={item?.id === data.subject_id} value={item.id}>{item.name}</option>
 
                                             )
                                          })
@@ -77,12 +118,11 @@ const AssignSubjectEdit = () => {
                                      className="form-control"
                                      placeholder="Input box (warning state)"
                                      type="text"
-                                    //  value={row.fullMark}
-                                    //  onChange={(e) => {
-                                    //      const updatedRows = [...rows];
-                                    //      updatedRows[index].fullMark = e.target.value;
-                                    //      setRows(updatedRows);
-                                    //  }}
+                                     value={fullMark}
+                                     onChange={(e) => {
+                            
+                                        setFullMark(e.target.value);
+                                     }}
                                  />
                              </div>
                          </div>
@@ -96,12 +136,11 @@ const AssignSubjectEdit = () => {
                                      className="form-control"
                                      placeholder="Input box (warning state)"
                                      type="text"
-                                    //  value={row.passMark}
-                                    //  onChange={(e) => {
-                                    //      const updatedRows = [...rows];
-                                    //      updatedRows[index].passMark = e.target.value;
-                                    //      setRows(updatedRows);
-                                    //  }}
+                                     value={passMark}
+                                     onChange={(e) => {
+                                        
+                                        setPassMark(e.target.value);
+                                     }}
                                  />
                              </div>
                          </div>
@@ -115,12 +154,10 @@ const AssignSubjectEdit = () => {
                                      className="form-control"
                                      placeholder="Input box (warning state)"
                                      type="text"
-                                    //  value={row.subjectiveMark}
-                                    //  onChange={(e) => {
-                                    //      const updatedRows = [...rows];
-                                    //      updatedRows[index].subjectiveMark = e.target.value;
-                                    //      setRows(updatedRows);
-                                    //  }}
+                                     value={subjectiveMark}
+                                     onChange={(e) => {
+                                        setSubjectiveMark(e.target.value);
+                                     }}
                                  />
                              </div>
                          </div>
@@ -151,7 +188,7 @@ const AssignSubjectEdit = () => {
                  {/* ))} */}
                  <div className="row p-3">
                      <button
-                         type="button"
+                         type="submit"
                         //  onClick={handleSubmitForm}
                          className="btn btn-lg btn-success w-25"
                      >
