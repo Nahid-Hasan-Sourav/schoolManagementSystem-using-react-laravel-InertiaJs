@@ -88,15 +88,15 @@ Route::put('/update-subject/{id}',[SchoolSubjectController::class,'update'])->na
 Route::delete('/delete-subject/{id}',[SchoolSubjectController::class,'delete'])->name('delete.subject');
 //school subject end here
 
-//school subject start here
+//school assign subject start here
 Route::get('/assign-subect-view',[AssignSubjectController::class,'index'])->name('view.assignsubject');
 Route::get('/assign-subect-store-view',[AssignSubjectController::class,'storeView'])->name('view.store.assignsubject');
 Route::post('/add-assign-subect',[AssignSubjectController::class,'store'])->name('add.assignsubject');
 Route::get('/assign/subject/details/{id}',[AssignSubjectController::class,'assignSubjectDetails'])->name('details.assignsubject');
 Route::get('/assign/subject/edit/{id}',[AssignSubjectController::class,'assignSubjectEdit'])->name('details.assignsubject');
-Route::put('/update-assign-subect/{id}',[AssignSubjectController::class,'update'])->name('update.assignsubject');
+Route::post('/update-assign-subect',[AssignSubjectController::class,'assignSubjectUpdate'])->name('update.assignsubject');
 Route::delete('/delete-assign-subect/{id}',[AssignSubjectController::class,'delete'])->name('delete.assignsubject');
-//school subject end here
+//school assign subject end here
 
 
 
