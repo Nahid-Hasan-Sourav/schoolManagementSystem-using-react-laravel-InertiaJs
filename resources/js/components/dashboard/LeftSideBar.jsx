@@ -32,7 +32,7 @@ const LeftSideBar = () => {
                         </div>
                     </a>
 
-
+                    {/* SETUP MANAGEMENT START HERE*/}
                     <a className={`sl-menu-link `} style={{ cursor:'pointer' }}>
                         <div className="sl-menu-item">
                             <IoIosSettings className="menu-item-icon icon  tx-24"/>
@@ -47,6 +47,7 @@ const LeftSideBar = () => {
                        <Link href="/student-class-view" className={`sl-menu-link ${url === '/student-class-view' ? 'active' : ''}`}>
                         <div className="sl-menu-item">
                             <i className="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+                            {/* <img className="menu-item-icon icon ion-ios-photos-outline tx-20" src='../../../../public/Dashboard/Image/add.png' alt='add class' /> */}
                             <span className="menu-item-label">
                                Add Class
                             </span>
@@ -112,17 +113,47 @@ const LeftSideBar = () => {
                             <i className="menu-item-arrow fa fa-angle-down"></i>
                         </div>
                     </Link>
-                    <Link href="/school-subject-view" className={`sl-menu-link ${url === '/school-subject-view' ? 'active' : ''}`}>
+                    {/* <Link href="/school-subject-view" className={`sl-menu-link ${url === '/school-subject-view' ? 'active' : ''}`}>
                         <div className="sl-menu-item">
                             <i className="menu-item-icon ion-ios-pie-outline tx-20"></i>
                             <span className="menu-item-label">Designation</span>
                             <i className="menu-item-arrow fa fa-angle-down"></i>
                         </div>
-                    </Link>
+                    </Link> */}
 
 
 
-                    </ul>
+                    </ul>                
+                   {/* SETUP MANAGEMENT END HERE*/}
+
+                    {/* STUDENT MANAGEMENT START HERE*/}
+                       <a className={`sl-menu-link `} style={{ cursor:'pointer' }}>
+                        <div className="sl-menu-item">
+                            <IoIosSettings className="menu-item-icon icon  tx-24"/>
+                            <span className="menu-item-label" onClick={()=>setToggle((prev)=>!prev)}>Setup Management</span>
+                            <i className="menu-item-arrow fa fa-angle-down"></i>
+                        </div>
+                    </a>
+
+                    <ul className={`sl-menu-sub nav flex-column `}
+                    style={{ display:toggle ? 'block' : 'none' }}
+                    >
+                       <a href="/student/registration" className={`sl-menu-link ${url === '/student/registration' ? 'active' : ''}`}>
+                        <div className="sl-menu-item">
+                            <i className="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+                            {/* <img className="menu-item-icon icon ion-ios-photos-outline tx-20" src='../../../../public/Dashboard/Image/add.png' alt='add class' /> */}
+                            <span className="menu-item-label">
+                               Registration 
+                            </span>
+                        </div>
+                    </a>
+                
+                    
+
+
+
+                    </ul>                
+                   {/* STUDENT MANAGEMENT END HERE*/}
 
                 </div>
 
