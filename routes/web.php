@@ -7,6 +7,7 @@ use App\Http\Controllers\FeeCategoryAmountController;
 use App\Http\Controllers\FeeCategoryController;
 use App\Http\Controllers\SchoolSubjectController;
 use App\Http\Controllers\StudentGroupController;
+use App\Http\Controllers\StudentRegistrationController;
 use App\Http\Controllers\StudentShiftController;
 use App\Http\Controllers\StudentYearController;
 use Illuminate\Support\Facades\Route;
@@ -98,5 +99,10 @@ Route::post('/update-assign-subect',[AssignSubjectController::class,'assignSubje
 Route::delete('/delete-assign-subect/{id}',[AssignSubjectController::class,'delete'])->name('delete.assignsubject');
 //school assign subject end here
 
-
+//student management start here
+Route::prefix('student')->group(function () {
+    Route::get('/registration',[StudentRegistrationController::class,'registrationView'])->name('view.student.registration');
+    Route::get('/registration/create',[StudentRegistrationController::class,'registrationCreate'])->name('create.student.registration');
+});
+//student management end here
 
