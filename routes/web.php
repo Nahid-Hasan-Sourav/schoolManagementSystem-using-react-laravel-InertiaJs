@@ -101,7 +101,7 @@ Route::delete('/delete-assign-subect/{id}',[AssignSubjectController::class,'dele
 
 //student management start here
 Route::prefix('student')->group(function () {
-    Route::get('/registration',[StudentRegistrationController::class,'registrationView'])->name('view.student.registration');
+    Route::get('/registration',[StudentRegistrationController::class,'index'])->name('view.student.registration');
     Route::get('/registration/create',[StudentRegistrationController::class,'registrationCreate'])->name('create.student.registration');
 });
 //student management end here
