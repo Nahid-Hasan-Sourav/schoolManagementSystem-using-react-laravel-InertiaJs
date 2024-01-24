@@ -45,7 +45,7 @@ const AssignSubject = () => {
 
     return (
         <DashBoardLayout>
-            <div className="row">
+            <div className="">
                 <div className="card">
                     <div className="card-header d-flex justify-content-between align-items-center">
                         <h1>Assign Subject To Class</h1>
@@ -83,13 +83,13 @@ const AssignSubject = () => {
                                             <td>
                                                 <a
                                                     href={`/assign/subject/details/${data?.class?.id}`}
-                                                    className="btn btn-success m-2"
+                                                    className="m-2 btn btn-success"
                                                 >
                                                     <IoEyeSharp />
                                                 </a>
                                                 <a
                                                     href={`/assign/subject/edit/${data.id}`}
-                                                    className="btn btn-primary m-2"
+                                                    className="m-2 btn btn-primary"
                                                 >
                                                     <FiEdit />
                                                 </a>

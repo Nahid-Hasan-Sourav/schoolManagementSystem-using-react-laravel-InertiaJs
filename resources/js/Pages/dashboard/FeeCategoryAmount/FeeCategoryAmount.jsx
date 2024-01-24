@@ -48,7 +48,7 @@ const FeeCategoryAmount = () => {
         <DashBoardLayout>
 
 
-            <div className="row">
+            <div className="">
             <div className="card">
                     <div className="card-header d-flex justify-content-between align-items-center">
                         <h1>Student Fee Category </h1>
@@ -82,7 +82,7 @@ const FeeCategoryAmount = () => {
                                         <td>{data?.amount}</td>
 
                                         <td>
-                                            <a href={`/edit-fee-category/${data.id}`} className="btn btn-primary m-2" >
+                                            <a href={`/edit-fee-category/${data.id}`} className="m-2 btn btn-primary" >
                                                 <FiEdit/>
                                             </a>
                                             <button className="btn btn-danger"
